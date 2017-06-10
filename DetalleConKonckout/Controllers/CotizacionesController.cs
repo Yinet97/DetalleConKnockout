@@ -18,7 +18,7 @@ namespace DetalleConKonckout.Controllers
         // GET: Cotizaciones
         public ActionResult Index()
         {
-            return View(db.Cotizacion.ToList());
+            return View(BLL.CotizacionesBLL.Listar());
         }
 
         // GET: Cotizaciones/Details/5
@@ -28,7 +28,7 @@ namespace DetalleConKonckout.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cotizaciones cotizaciones = db.Cotizacion.Find(id);
+            Cotizaciones cotizaciones = BLL.CotizacionesBLL.Buscar(id);
             if (cotizaciones == null)
             {
                 return HttpNotFound();
@@ -39,6 +39,7 @@ namespace DetalleConKonckout.Controllers
         // GET: Cotizaciones/Create
         public ActionResult Create()
         {
+            ViewBag.Detail = new List<CotizacionesDetalles>();
             return View();
         }
 
@@ -51,12 +52,18 @@ namespace DetalleConKonckout.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Cotizacion.Add(cotizaciones);
-                db.SaveChanges();
+                BLL.CotizacionesBLL.Guardar(cotizaciones);
                 return RedirectToAction("Index");
             }
 
             return View(cotizaciones);
+        }
+
+        //referencia para guardar la corizacion
+        public JsonResult Save(Cotizaciones cotizacion)
+        {
+            int id = 0; if (ModelState.IsValid) { if (BLL.CotizacionesBLL.Guardar(cotizacion)) { id = cotizacion.CotizacionId; } } else { id = +1; }
+            return Json(id, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Cotizaciones/Edit/5
@@ -66,7 +73,7 @@ namespace DetalleConKonckout.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cotizaciones cotizaciones = db.Cotizacion.Find(id);
+            Cotizaciones cotizaciones = BLL.CotizacionesBLL.Buscar(id);
             if (cotizaciones == null)
             {
                 return HttpNotFound();
@@ -83,8 +90,7 @@ namespace DetalleConKonckout.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cotizaciones).State = EntityState.Modified;
-                db.SaveChanges();
+                BLL.CotizacionesBLL.Modificar(cotizaciones);
                 return RedirectToAction("Index");
             }
             return View(cotizaciones);
@@ -93,26 +99,25 @@ namespace DetalleConKonckout.Controllers
         // GET: Cotizaciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Cotizaciones cotizaciones = db.Cotizacion.Find(id);
-            if (cotizaciones == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cotizaciones);
+             if (id == null)
+        {
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
+        Cotizaciones cotizaciones = BLL.CotizacionesBLL.Buscar(id);
+        if (cotizaciones == null)
+        {
+            return HttpNotFound();
+        }
+        return View(cotizaciones);
+    }
 
         // POST: Cotizaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cotizaciones cotizaciones = db.Cotizacion.Find(id);
-            db.Cotizacion.Remove(cotizaciones);
-            db.SaveChanges();
+            Cotizaciones cotizaciones = BLL.CotizacionesBLL.Buscar(id);
+            BLL.CotizacionesBLL.Eliminar(cotizaciones);
             return RedirectToAction("Index");
         }
 
