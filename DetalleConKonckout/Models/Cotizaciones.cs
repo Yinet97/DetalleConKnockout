@@ -16,7 +16,7 @@ namespace DetalleConKonckout.Models
 
         [DataType(DataType.DateTime)]
         public DateTime Fecha { get; set; }
-
+        //
         [DataType(DataType.Currency)]
         public double Monto { get; set; }
 

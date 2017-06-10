@@ -159,8 +159,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\CotizacionDetallesBLL.cs" />
     <Compile Include="BLL\CotizacionesBLL.cs" />
-    <Compile Include="Controllers\CotizacionesController.cs" />
-    <Compile Include="Controllers\CotizacionesDetallesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CotizacionDb.cs" />
     <Compile Include="Global.asax.cs">
