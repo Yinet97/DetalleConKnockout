@@ -159,6 +159,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BLL\CotizacionDetallesBLL.cs" />
     <Compile Include="BLL\CotizacionesBLL.cs" />
+    <Compile Include="Controllers\CotizacionesController.cs" />
+    <Compile Include="Controllers\CotizacionesDetallesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CotizacionDb.cs" />
     <Compile Include="Global.asax.cs">
@@ -312,6 +314,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cotizaciones\Create.cshtml" />
+    <Content Include="Views\Cotizaciones\Delete.cshtml" />
+    <Content Include="Views\Cotizaciones\Details.cshtml" />
+    <Content Include="Views\Cotizaciones\Edit.cshtml" />
+    <Content Include="Views\Cotizaciones\Index.cshtml" />
+    <Content Include="Views\CotizacionesDetalles\Create.cshtml" />
+    <Content Include="Views\CotizacionesDetalles\Delete.cshtml" />
+    <Content Include="Views\CotizacionesDetalles\Details.cshtml" />
+    <Content Include="Views\CotizacionesDetalles\Edit.cshtml" />
+    <Content Include="Views\CotizacionesDetalles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
