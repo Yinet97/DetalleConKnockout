@@ -6,7 +6,7 @@ using System.Web;
 
 namespace DetalleConKonckout.Models
 {
-    public class CotizacionesDetalle
+    public class CotizacionesDetalles
     {
         [Key]
         public int CotizacionDetalleId { get; set; }
